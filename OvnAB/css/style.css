@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  padding:  0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background: url("../img/login-background.webp");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.form-div{
+position: absolute;
+top: 50%;
+left: 50%;
+padding: 40px;
+transform: translate(-50%, -50%);
+width: 400px;
+background-color: #2e3233;
+border-radius: 10px;
+text-align: center;
+-webkit-box-shadow: 10px 10px 52px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 52px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 52px 0px rgba(0,0,0,0.75);
+}
+
+.form-div img{
+max-width: 180px;
+max-height: 180px;
+margin: auto;
+display: block;
+}
+
+.form-div input[type = "text"], .form-div input[type = "password"], .form-div input[type = "email"]{
+border: 0;
+background: none;
+display: block;
+margin: 10px auto;
+border: 2px solid  white;
+padding: 14px 10px;
+width: 200px;
+outline: none;
+border-radius: 20px;
+background-color: white;
+transition: 0.25s;
+
+}
+
+.links{
+color:  white;
+font-weight: 500;
+text-decoration: none;
+display: inline-block;
+padding-left: 10px;
+padding-right: 10px;
+
+}
+
+.link-main-page{
+border-bottom: 3px solid  green;
+}
+
+
+.form-div input[type = "text"]:focus, .form-div input[type = "password"]:focus, .form-div input[type = "email"]:focus{
+border-color: #2ecc71;
+width: 225px;
+}
+
+input[type=submit] {
+width: 80%;
+background-color: #4CAF50;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.box-error{
+  background-color: #2e3233;
+}
+
+.flex {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 8vh;
+ 
+}
+
+
+
