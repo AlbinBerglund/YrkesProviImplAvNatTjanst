@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 	<body>
-		<?php?>
+
 
 
         <div class="form-div form-div-login">

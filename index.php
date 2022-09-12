@@ -1,4 +1,6 @@
 <?php
+  require( './php/Mp3Info/src/Mp3Info.php' );  // Include _Mp3Info_'s source file with its declarations
+  use wapmorgan\Mp3Info\Mp3Info;
   session_start(); 
 
 
@@ -15,7 +17,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+	<title>Ratify</title>
 	<link rel="stylesheet" type="text/css" href="./css/home.css">
   <script src="./js/audio.js"></script>
 </head>
@@ -24,7 +26,7 @@
 <div class="sidenav">
   <a href="#">Profile</a>
   <a href="#">Search</a>
-  <a href="#">Link</a>
+  <a href="#">Playlist</a>
 </div>
 
 <div class = "header">  <img class="logo" src="./img/logo.webp" alt="">
@@ -47,7 +49,10 @@
 
   // (B2) OUTPUT SONGS IN <DIV>
   if (is_array($songs)) { foreach ($songs as $k=>$s) {
-    printf("<div data-src='%s' class='song'>%s</div>", $s, basename($s));
+    $audio = new Mp3Info($s, true);
+    printf("<div data-src='%s' class='song'>%s</div>", $s, basename($audio->tags['song'].'<br> from '.$audio->tags['artist']));
+    echo 'duration: '.floor($audio->duration / 60).' min '.floor($audio->duration % 60).' sec';
+    include('./php/songDatabase.php');
   }} else { echo "No songs found!"; }
 ?></div>
  

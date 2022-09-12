@@ -14,7 +14,7 @@ var aud = {
     }
 
     // (A3) AUTO PLAY WHEN SUFFICIENTLY LOADED
-    aud.player.oncanplay = aud.player.play;
+    aud.player.oncanplay = aud.player.play; 
 
     // (A4) AUTOPLAY NEXT SONG IN PLAYLIST WHEN CURRENT SONG ENDS
     aud.player.onended = () => {
@@ -35,7 +35,7 @@ var aud = {
 
     // (B2) A LITTLE BIT OF COSMETIC
     for (let i=0; i<aud.playlist.length; i++) {
-      aud.playlist[i].style.backgroundColor = i==id ? "yellow" : "";
+      aud.playlist[i].style.backgroundColor = i==id ? "green" : "";
     }
   }
 };
