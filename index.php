@@ -26,7 +26,18 @@
 <div class="sidenav">
   <a href="#">Profile</a>
   <a href="#">Search</a>
+<<<<<<< HEAD
+  <div class="dropdown">
+  <a class="droplink" href="#">Playlist ↓
+    <div class="dropdown-content">
+    <a href="#">All Songs</a>
+    <a href="#">Create Playlist +</a>
+    </div>
+  </a>
+  </div>
+=======
   <a href="#">Playlist</a>
+>>>>>>> 633cf216eec2949d58348802c3d1158426a622e8
 </div>
 
 <div class = "header">  <img class="logo" src="./img/logo.webp" alt="">
@@ -39,8 +50,7 @@
   </div>
   
   <div class="column middle">
-    <h2>Main Content</h2>
-    
+    <h2>All Songs</h2>
 
 <!-- (B) PLAYLIST -->
 <div id="demoList"><?php
@@ -51,7 +61,11 @@
   if (is_array($songs)) { foreach ($songs as $k=>$s) {
     $audio = new Mp3Info($s, true);
     printf("<div data-src='%s' class='song'>%s</div>", $s, basename($audio->tags['song'].'<br> from '.$audio->tags['artist']));
+<<<<<<< HEAD
+    echo ' <p class="duration">duration: '.floor($audio->duration / 60).' min '.floor($audio->duration % 60).' sec </p>';
+=======
     echo 'duration: '.floor($audio->duration / 60).' min '.floor($audio->duration % 60).' sec';
+>>>>>>> 633cf216eec2949d58348802c3d1158426a622e8
     include('./php/songDatabase.php');
   }} else { echo "No songs found!"; }
 ?></div>
