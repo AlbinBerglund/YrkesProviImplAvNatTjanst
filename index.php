@@ -24,20 +24,15 @@
 <body>
 
 <div class="sidenav">
-  <a href="#">Profile</a>
+  <a href="./index.php">Home</a>
   <a href="#">Search</a>
-<<<<<<< HEAD
   <div class="dropdown">
-  <a class="droplink" href="#">Playlist ↓
+  <a class="droplink" href="./php/profile.php">Profile
     <div class="dropdown-content">
-    <a href="#">All Songs</a>
-    <a href="#">Create Playlist +</a>
+    <a href="./php/edit_profile.php">Update Profile</a>
     </div>
   </a>
   </div>
-=======
-  <a href="#">Playlist</a>
->>>>>>> 633cf216eec2949d58348802c3d1158426a622e8
 </div>
 
 <div class = "header">  <img class="logo" src="./img/logo.webp" alt="">
@@ -57,17 +52,16 @@
   // (B1) GET ALL SONGS
   $songs = glob("./audio/*.{mp3,webm,ogg,wav}", GLOB_BRACE);
 
+  function playSong($songs){
   // (B2) OUTPUT SONGS IN <DIV>
   if (is_array($songs)) { foreach ($songs as $k=>$s) {
     $audio = new Mp3Info($s, true);
     printf("<div data-src='%s' class='song'>%s</div>", $s, basename($audio->tags['song'].'<br> from '.$audio->tags['artist']));
-<<<<<<< HEAD
     echo ' <p class="duration">duration: '.floor($audio->duration / 60).' min '.floor($audio->duration % 60).' sec </p>';
-=======
-    echo 'duration: '.floor($audio->duration / 60).' min '.floor($audio->duration % 60).' sec';
->>>>>>> 633cf216eec2949d58348802c3d1158426a622e8
     include('./php/songDatabase.php');
   }} else { echo "No songs found!"; }
+}
+playSong($songs)
 ?></div>
  
    
