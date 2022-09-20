@@ -37,11 +37,12 @@
   
   <div class="column middle">
     <h2>Profile</h2>
+    <?php  include('error.php');  ?>
 
     <?php
     $db = mysqli_connect('localhost', 'root', '', 'demo');
     $username = $_SESSION['username'];
-
+    
     $query = "SELECT * FROM users WHERE username='$username'";
     $results = mysqli_query($db, $query);
     if (mysqli_num_rows($results) == 1) {
@@ -51,7 +52,7 @@
           }
           echo "</ul>";
     }else {
-        
+      array_push($errors, "User not found");
     }
    
 

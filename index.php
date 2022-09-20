@@ -1,7 +1,7 @@
 <?php
   require( './php/Mp3Info/src/Mp3Info.php' );  // Include _Mp3Info_'s source file with its declarations
   use wapmorgan\Mp3Info\Mp3Info;
-  session_start(); 
+  include('./php/config.php');
 
 
   if (!isset($_SESSION['username'])) {
@@ -36,6 +36,12 @@
 </div>
 
 <div class = "header">  <img class="logo" src="./img/logo.webp" alt="">
+<div class="form-div search-header">
+      <form action="index.php" method="POST">
+        <?php  include('./php/error.php');  ?>
+        <input name="key" type="text" placeholder="Search">        <input type="submit" value="Submit" name="search">
+      </form>
+    </div>
 <?php  if (isset($_SESSION['username'])) : ?>
     	<div class="userinfo"><a  class="links"  href="index.php?logout='1'"><button class="logout-button">Logout</button></a> <?php echo $_SESSION['profilePic']; ?> <?php echo $_SESSION['username']; ?></div>
     <?php endif ?></div>
@@ -45,6 +51,7 @@
   </div>
   
   <div class="column middle">
+
     <h2>All Songs</h2>
 
 <!-- (B) PLAYLIST -->

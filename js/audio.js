@@ -22,9 +22,6 @@ var aud = {
       if (aud.now>=aud.playlist.length) { aud.now = 0; }
       aud.play(aud.now);
     };
-
-    // (A5) AUTOPLAY FIRST SONG (OPTIONAL)
-    aud.play(0);
   },
 
   // (B) PLAY SELECTED SONG

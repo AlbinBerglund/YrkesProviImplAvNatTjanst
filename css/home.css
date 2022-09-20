@@ -69,6 +69,7 @@ cursor: pointer;
 
 .userinfo{
   flex: 3;
+  
   color:  white;
   font-weight: 500;
   padding-right: 2rem;
@@ -87,10 +88,35 @@ cursor: pointer;
   
   }
 
+  .search-header{
+    flex: 2;
+  }
+  .search-header input[type = "text"]{
+    float:left;
+  
+  }
+
   .logo{
     max-width: 150px;
     max-height: 100px;
     margin: 0;
+  }
+
+  .search{
+    display: block;
+  }
+  .key{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    border: 2px solid  white;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    border-radius: 20px;
+    background-color: white;
+    transition: 0.25s;    
   }
 
 

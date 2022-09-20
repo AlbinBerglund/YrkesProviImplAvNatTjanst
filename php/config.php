@@ -114,7 +114,6 @@ if (isset($_POST['update'])) {
       mysqli_query($db, $query);
       $_SESSION['username'] = $newUsername;
     }
-
     
     if (($newPassword != empty($newPassword)) && ($newPassword == $newPasswordConfirm)) {
       $query = "UPDATE users SET password='$newPassword' WHERE password='$oldPassword'";
@@ -124,8 +123,25 @@ if (isset($_POST['update'])) {
   }else{
     array_push($errors, "Password is required or incorrect, $oldPassword, $newPassword");
   }
+}
 
+if (isset($_POST['search'])) {
+  $search = mysqli_real_escape_string($db, $_POST['key']);
+  $query = "SELECT * FROM music WHERE name LIKE '%$search%' OR artist LIKE '%$search%' ORDER BY name";
+  $results = mysqli_query($db, $query); 
 
+  if (mysqli_num_rows($results) > 0) {
+    while($row = mysqli_fetch_assoc($results)) {
+      echo "div class='article-box'>
+      <h3>".$row['name']. "</h3>
+      <p>".$row['artist']. "</p>
+      </div>";
+      }
+
+}else {
+  array_push($errors, "User not found");
+}
+ 
 }
 
 
