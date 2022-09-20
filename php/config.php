@@ -101,23 +101,30 @@ if (isset($_POST['update'])) {
   $oldPassword = $_SESSION['password'];
   $password = md5(mysqli_real_escape_string($db, $_POST['password']));
   $newPassword = md5(mysqli_real_escape_string($db, $_POST['newPassword']));
-  $newPasswordConfirm = mysqli_real_escape_string($db, $_POST['newPasswordConfirm']);
+  $newPasswordConfirm = md5(mysqli_real_escape_string($db, $_POST['newPasswordConfirm']));
 
-  if ($password != empty($password) && $password == $oldPassword) {
-    if ($newUsername != empty($newUsername)) {
+  if (($password != empty($password)) && ($password == $oldPassword)) {
+    
+    if(empty($newUsername)){  
+      $_SESSION['username'] = $oldUsername;
+    }
+
+    elseif ($newUsername != empty($newUsername)) {
       $query = "UPDATE users SET username='$newUsername' WHERE username='$oldUsername'";
       mysqli_query($db, $query);
+      $_SESSION['username'] = $newUsername;
     }
+
+    
     if (($newPassword != empty($newPassword)) && ($newPassword == $newPasswordConfirm)) {
       $query = "UPDATE users SET password='$newPassword' WHERE password='$oldPassword'";
       mysqli_query($db, $query);
-
+      $_SESSION['password'] = $newPassword;
     }
   }else{
     array_push($errors, "Password is required or incorrect, $oldPassword, $newPassword");
   }
-  $_SESSION['username'] = $newUsername;
-  $_SESSION['password'] = $newPassword;
+
 
 }
 
