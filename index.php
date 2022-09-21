@@ -1,7 +1,8 @@
 <?php
   require( './php/Mp3Info/src/Mp3Info.php' );  // Include _Mp3Info_'s source file with its declarations
   use wapmorgan\Mp3Info\Mp3Info;
-  include('./php/config.php');
+  session_start();
+
 
 
   if (!isset($_SESSION['username'])) {
@@ -25,7 +26,6 @@
 
 <div class="sidenav">
   <a href="./index.php">Home</a>
-  <a href="#">Search</a>
   <div class="dropdown">
   <a class="droplink" href="./php/profile.php">Profile
     <div class="dropdown-content">
@@ -38,8 +38,7 @@
 <div class = "header">  <img class="logo" src="./img/logo.webp" alt="">
 <div class="form-div search-header">
       <form action="index.php" method="POST">
-        <?php  include('./php/error.php');  ?>
-        <input name="key" type="text" placeholder="Search">        <input type="submit" value="Submit" name="search">
+        <input name="key" type="text" placeholder="Search"><input type="submit" value="Submit" name="search">
       </form>
     </div>
 <?php  if (isset($_SESSION['username'])) : ?>
@@ -51,21 +50,26 @@
   </div>
   
   <div class="column middle">
+  <?php 
+  ?>
 
-    <h2>All Songs</h2>
+    <h2>Songs</h2>
 
 <!-- (B) PLAYLIST -->
 <div id="demoList"><?php
+
+
   // (B1) GET ALL SONGS
-  $songs = glob("./audio/*.{mp3,webm,ogg,wav}", GLOB_BRACE);
+  include('./php/search.php');
+  include('./php/error.php');
 
   function playSong($songs){
   // (B2) OUTPUT SONGS IN <DIV>
   if (is_array($songs)) { foreach ($songs as $k=>$s) {
+    include_once('./php/songDatabase.php');
     $audio = new Mp3Info($s, true);
     printf("<div data-src='%s' class='song'>%s</div>", $s, basename($audio->tags['song'].'<br> from '.$audio->tags['artist']));
     echo ' <p class="duration">duration: '.floor($audio->duration / 60).' min '.floor($audio->duration % 60).' sec </p>';
-    include('./php/songDatabase.php');
   }} else { echo "No songs found!"; }
 }
 playSong($songs)

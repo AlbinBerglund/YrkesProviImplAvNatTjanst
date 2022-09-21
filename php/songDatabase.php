@@ -1,15 +1,16 @@
 <?php
-
+use wapmorgan\Mp3Info\Mp3Info;
 // initializing variables
 $name = "";
 $artist = "";
 $album = "";
 $yearOfRelease = "";
 $errors = array(); 
+$allSongs = glob("./audio/*.{mp3,webm,ogg,wav}", GLOB_BRACE);
 
-// connect to the database
+if (is_array($allSongs)) { foreach ($allSongs as $k=>$s) {
+$audio = new Mp3Info($s, true);
 $db = mysqli_connect('localhost', 'root', '', 'demo');
-
 $name = mysqli_real_escape_string($db, $audio->tags['song']);
 $artist = mysqli_real_escape_string($db, $audio->tags['artist']);
 $album = mysqli_real_escape_string($db, $audio->tags['album']);
@@ -31,5 +32,6 @@ if (count($errors) == 0) {
               VALUES('$name', '$artist', '$album', '$yearOfRelease', '$path')";
     mysqli_query($db, $query);
 }
+}} else { echo "No songs found!"; }
 
 ?>
