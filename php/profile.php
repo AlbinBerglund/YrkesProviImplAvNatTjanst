@@ -10,7 +10,9 @@
   	session_destroy();
   	unset($_SESSION['username']);
   	header("location: ../php/login.php");
+
   }
+  $profilePath = $_SESSION['profilePic'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,14 +23,14 @@
 <body>
 
 <div class="sidenav">
-  <a href="../index.php">Home</a>
+  <a href="./index.php">Home</a>
   <a href="./profile.php">Profile</a>
   <a href="./edit_profile.php">Update Profile</a>
 </div>
 
 <div class = "header">  <img class="logo" src="../img/logo.webp" alt="">
 <?php  if (isset($_SESSION['username'])) : ?>
-    	<div class="userinfo"><a  class="links"  href="profile.php?logout='1'"><button class="logout-button">Logout</button></a> <?php echo $_SESSION['profilePic']; ?> <?php echo $_SESSION['username']; ?></div>
+    	<div class="userinfo"><a  class="links"  href="profile.php?logout='1'"><button class="logout-button">Logout</button></a> <?php echo "<img src='$profilePath' alt=Img >" ; ?> <?php echo $_SESSION['username']; ?></div>
     <?php endif ?></div>
 
     <div class="row">

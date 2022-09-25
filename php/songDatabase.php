@@ -1,16 +1,17 @@
 <?php
-use wapmorgan\Mp3Info\Mp3Info;
+  use wapmorgan\Mp3Info\Mp3Info;
 // initializing variables
 $name = "";
 $artist = "";
 $album = "";
 $yearOfRelease = "";
 $errors = array(); 
-$allSongs = glob("./audio/*.{mp3,webm,ogg,wav}", GLOB_BRACE);
+$songs = glob("../audio/*.{mp3,webm,ogg,wav}", GLOB_BRACE);
 
-if (is_array($allSongs)) { foreach ($allSongs as $k=>$s) {
-$audio = new Mp3Info($s, true);
+
 $db = mysqli_connect('localhost', 'root', '', 'demo');
+if (is_array($songs)) { foreach ($songs as $k=>$s) {
+$audio = new Mp3Info($s, true);
 $name = mysqli_real_escape_string($db, $audio->tags['song']);
 $artist = mysqli_real_escape_string($db, $audio->tags['artist']);
 $album = mysqli_real_escape_string($db, $audio->tags['album']);
@@ -22,7 +23,7 @@ $result = mysqli_query($db, $user_check_query);
 $music = mysqli_fetch_assoc($result);
 
 if ($music) { // if song exists
-  if ($music['name'] === $name) {
+  if ($music['path'] === $path) {
     array_push($errors, "Song already exists");
   }
 }
@@ -32,6 +33,6 @@ if (count($errors) == 0) {
               VALUES('$name', '$artist', '$album', '$yearOfRelease', '$path')";
     mysqli_query($db, $query);
 }
-}} else { echo "No songs found!"; }
+}} else {array_push($errors, "No songs or artist found"); }
 
 ?>

@@ -16,7 +16,7 @@ if (isset($_POST['search'])) {
         }
   
   }else {
-    array_push($errors, "No songs or artist found");
+    array_push($errors, "No songs or artist found!");
   }
    
   }

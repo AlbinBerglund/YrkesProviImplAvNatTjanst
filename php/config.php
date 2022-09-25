@@ -21,7 +21,7 @@ if (isset($_POST['register'])) {
   $emailConfirm = mysqli_real_escape_string($db, $_POST['emailConfirm']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
   $passwordConfirm = mysqli_real_escape_string($db, $_POST['passwordConfirm']);
-  $profilePic = "<img src=/img/basic_profile.webp alt=Img >";
+  $profilePic = "../img/basic_profile.webp";
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
@@ -57,13 +57,14 @@ if (isset($_POST['register'])) {
   if (count($errors) == 0) {
   	$password = md5($passwordConfirm);//encrypt the password before saving in the database
 
-  	$query = "INSERT INTO users (username, firstName, lastName, email, password) 
-  			  VALUES('$username', '$firstName', '$lastName', '$email', '$password')";
+  	$query = "INSERT INTO users (username, firstName, lastName, email, password, profilePic) 
+  			  VALUES('$username', '$firstName', '$lastName', '$email', '$password', '$profilePic')";
   	mysqli_query($db, $query);
+    $_SESSION['password'] = $password;
   	$_SESSION['username'] = $username;
     $_SESSION['profilePic'] = $profilePic;
   	$_SESSION['success'] = "You are now logged in";
-  	header('location: ../index.php');
+  	header('location: ./index.php');
   }
 }
 
@@ -88,7 +89,7 @@ if (isset($_POST['login'])) {
   	  $_SESSION['username'] = $username;
       $_SESSION['profilePic'] = $profilePic;
   	  $_SESSION['success'] = "You are now logged in";
-  	  header('location: ../index.php');
+  	  header('location: ./index.php');
   	}else {
   		array_push($errors, "Wrong username or password");
   	}
@@ -102,6 +103,7 @@ if (isset($_POST['update'])) {
   $password = md5(mysqli_real_escape_string($db, $_POST['password']));
   $newPassword = md5(mysqli_real_escape_string($db, $_POST['newPassword']));
   $newPasswordConfirm = md5(mysqli_real_escape_string($db, $_POST['newPasswordConfirm']));
+  $profilePic = mysqli_real_escape_string($db, $_POST['profile_pic']);
 
   if (($password != empty($password)) && ($password == $oldPassword)) {
     
@@ -121,27 +123,8 @@ if (isset($_POST['update'])) {
       $_SESSION['password'] = $newPassword;
     }
   }else{
-    array_push($errors, "Password is required or incorrect, $oldPassword, $newPassword");
+    array_push($errors, "Password is required or incorrect, $oldPassword, $newPassword, $profilePic");
   }
-}
-
-if (isset($_POST['search'])) {
-  $search = mysqli_real_escape_string($db, $_POST['key']);
-  $query = "SELECT * FROM music WHERE name LIKE '%$search%' OR artist LIKE '%$search%' ORDER BY name";
-  $results = mysqli_query($db, $query); 
-
-  if (mysqli_num_rows($results) > 0) {
-    while($row = mysqli_fetch_assoc($results)) {
-      echo "div class='article-box'>
-      <h3>".$row['name']. "</h3>
-      <p>".$row['artist']. "</p>
-      </div>";
-      }
-
-}else {
-  array_push($errors, "User not found");
-}
- 
 }
 
 
