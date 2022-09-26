@@ -29,7 +29,7 @@
 
 <div class = "header">  <img class="logo" src="../img/logo.webp" alt="">
 <?php  if (isset($_SESSION['username'])) : ?>
-    	<div class="userinfo"><a  class="links"  href="edit_profile.php?logout='1'"><button class="logout-button">Logout</button></a> <?php echo "<img src='$profilePath' alt=Img width=30 height=30  >" ; ?> <?php echo $_SESSION['username']; ?></div>
+    	<div class="userinfo"><a  class="links"  href="edit_profile.php?logout='1'"><button class="logout-button">Logout</button></a> <?php echo "<img src='$profilePath' alt=Img width=40 height=40  >" ; ?> <?php echo $_SESSION['username']; ?></div>
     <?php endif ?></div>
 
     <div class="row">

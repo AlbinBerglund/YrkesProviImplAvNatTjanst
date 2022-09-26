@@ -49,6 +49,11 @@ body {
   padding-left: 20px;
 }
 
+.box{
+  position: absolute;
+
+}
+
 /* Style the header */
 .header {
   text-align: right;
@@ -224,6 +229,7 @@ input[type=submit] {
   border: 2px solid  white;
   text-align: center;
   border-radius: 10px;
+  margin-bottom: 10rem;
 
   -webkit-box-shadow: 10px 10px 52px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 10px 10px 52px 0px rgba(0,0,0,0.75);

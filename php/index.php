@@ -66,15 +66,14 @@ include('./search.php');
   // (B1) GET ALL SONGS
 
 
-function playSong($music){
 // (B2) OUTPUT SONGS IN <DIV>
-if (is_array($music)) { foreach ($music as $s) {
+if (is_array($songs)) { foreach ($songs as $s) {
   $audio = new Mp3Info($s, true);
-  printf("<div data-src='%s' class='song'>%s</div>", $s, basename($audio->tags['song'].'<br> from '.$audio->tags['artist']));
+  include('./coverArt.php');
+  printf( '<div class="box"><img src= alt=Img width=70 height=70 ></div>' .  "<div data-src='%s' class='song'>%s</div>", $s, basename($audio->tags['song'] . '<br> from '.$audio->tags['artist']));
   echo ' <p class="duration">duration: '.floor($audio->duration / 60).' min '.floor($audio->duration % 60).' sec </p>';
 }} else {  array_push($errors, "No songs or artist found!"); }
-}
-playSong($songs);
+
 
 ?></div>
  

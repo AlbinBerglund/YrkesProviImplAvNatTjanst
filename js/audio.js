@@ -15,6 +15,7 @@ var aud = {
 
     // (A3) AUTO PLAY WHEN SUFFICIENTLY LOADED
     aud.player.oncanplay = aud.player.play; 
+    aud.player.volume = 0.1;
 
     // (A4) AUTOPLAY NEXT SONG IN PLAYLIST WHEN CURRENT SONG ENDS
     aud.player.onended = () => {

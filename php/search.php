@@ -20,6 +20,7 @@ if (isset($_POST['search'])) {
   }
    
   }
+  mysqli_close($db);
   
 
 ?>
