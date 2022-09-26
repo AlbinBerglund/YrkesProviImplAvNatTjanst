@@ -43,7 +43,7 @@
       </form>
     </div>
 <?php  if (isset($_SESSION['username'])) : ?>
-    	<div class="userinfo"><a  class="links"  href="index.php?logout='1'"><button class="logout-button">Logout</button></a> <?php echo "<img src='$profilePath' alt=Img >" ; ?> <?php echo $_SESSION['username']; ?></div>
+    	<div class="userinfo"><a  class="links"  href="index.php?logout='1'"><button class="logout-button">Logout</button></a> <?php echo "<img src='$profilePath' alt=Img width=30 height=30 >" ; ?> <?php echo $_SESSION['username']; ?></div>
     <?php endif ?></div>
 
     <div class="row">

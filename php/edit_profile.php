@@ -29,7 +29,7 @@
 
 <div class = "header">  <img class="logo" src="../img/logo.webp" alt="">
 <?php  if (isset($_SESSION['username'])) : ?>
-    	<div class="userinfo"><a  class="links"  href="edit_profile.php?logout='1'"><button class="logout-button">Logout</button></a> <?php echo "<img src='$profilePath' alt=Img >" ; ?> <?php echo $_SESSION['username']; ?></div>
+    	<div class="userinfo"><a  class="links"  href="edit_profile.php?logout='1'"><button class="logout-button">Logout</button></a> <?php echo "<img src='$profilePath' alt=Img width=30 height=30  >" ; ?> <?php echo $_SESSION['username']; ?></div>
     <?php endif ?></div>
 
     <div class="row">
@@ -39,7 +39,7 @@
   <div class="column middle">
     <h2>Update Profile</h2>
     <div class="form-div">
-    <form action="edit_profile.php" method="post" >
+    <form action="edit_profile.php" method="post" enctype="multipart/form-data" >
 
 
                 <div>
@@ -57,7 +57,7 @@
                 </div>
                 <label for="image_uploads">Choose images to upload (PNG, JPG, WEBP)</label>
                 <div>
-                <input type="file" id="profile_pic" name="profile_pic" accept=".jpg, .jpeg, .png, .webp" />
+                <input type="file" id="uploadfile" name="uploadfile" accept=".jpg, .jpeg, .png, .webp" />
                 </div>
                 <section>
                     <input class="submit-register" name="update" type="submit"/>

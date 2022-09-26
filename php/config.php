@@ -71,7 +71,7 @@ if (isset($_POST['register'])) {
 if (isset($_POST['login'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
-  $profilePic = "<img src=./img/basic_profile.webp alt=Img>";
+  $profilePic = "../img/basic_profile.webp";
 
   if (empty($username)) {
   	array_push($errors, "Username is required");
@@ -103,27 +103,44 @@ if (isset($_POST['update'])) {
   $password = md5(mysqli_real_escape_string($db, $_POST['password']));
   $newPassword = md5(mysqli_real_escape_string($db, $_POST['newPassword']));
   $newPasswordConfirm = md5(mysqli_real_escape_string($db, $_POST['newPasswordConfirm']));
-  $profilePic = mysqli_real_escape_string($db, $_POST['profile_pic']);
+  $profilPic = $_FILES['uploadfile']["name"];
 
   if (($password != empty($password)) && ($password == $oldPassword)) {
     
     if(empty($newUsername)){  
       $_SESSION['username'] = $oldUsername;
     }
-
-    elseif ($newUsername != empty($newUsername)) {
+    elseif ($newUsername !== empty($newUsername)) {
       $query = "UPDATE users SET username='$newUsername' WHERE username='$oldUsername'";
       mysqli_query($db, $query);
       $_SESSION['username'] = $newUsername;
     }
     
-    if (($newPassword != empty($newPassword)) && ($newPassword == $newPasswordConfirm)) {
+    if (($newPassword !== empty($newPassword)) && ($newPassword == $newPasswordConfirm)) {
       $query = "UPDATE users SET password='$newPassword' WHERE password='$oldPassword'";
       mysqli_query($db, $query);
       $_SESSION['password'] = $newPassword;
     }
+
+    if($profilPic != empty($profilPic)){
+      $tempname = $_FILES["uploadfile"]["tmp_name"];
+      $folder = "../img/" .  $profilPic;
+      $sql = "UPDATE users SET profilePic='$folder' WHERE username='$oldUsername'";
+   
+      // Execute query
+      mysqli_query($db, $sql);
+     $_SESSION['profilePic'] = $folder;
+   
+      // Now let's move the uploaded image into the folder: image
+      if (move_uploaded_file($tempname, $folder)) {
+          echo "<h3>  Image uploaded successfully!</h3>";
+      } else {
+        array_push($errors, "Failed to upload image");
+      }
+    }
+    
   }else{
-    array_push($errors, "Password is required or incorrect, $oldPassword, $newPassword, $profilePic");
+    array_push($errors, "Password is required or incorrect, $oldPassword, $newPassword");
   }
 }
 
