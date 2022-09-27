@@ -267,7 +267,7 @@ Till sista har jag min jätte finna audio player
 </div>
 ```
 #### ⚠️ det fanns mycket mera av annan kod men jag orkar inte längre. Jag har satt kanske 150 timmar på den här med alla clean resets och förhand functions.
-#### ⚠️ Please ge mig en 5, aint no way nån annan göra så här doc
+#### ⚠️ Never been easier getting the bread
 
 
 
